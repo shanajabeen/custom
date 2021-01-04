@@ -1,0 +1,3 @@
+id,name,model_id:id,group_id:id,perm_read,perm_write,perm_create,perm_unlink
+access_bi_test_bi_test,bi_test.bi_test,model_bi_test,base.group_user,1,1,1,1
+access_b2_test_b2_test,b2_test.b2_test,model_b2_test,base.group_user,1,1,1,1

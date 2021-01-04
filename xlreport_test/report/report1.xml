@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+        <report
+        id="report_id_xlx"
+        model="account.move"
+        string="Partners Excel Report"
+        report_type="xlsx"
+        name="xlreport_test.test_report_id_xlx"
+        file="xlreport_test.test_report_id_xlx"
+       />
+</data>
+</odoo>	        

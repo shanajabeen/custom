@@ -1,0 +1,46 @@
+<odoo>
+  <data>
+    
+
+    <record model="ir.ui.view" id="report_test.list">
+      <field name="name">report_test list</field>
+      <field name="model">report.test</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="address"/>
+          <field name="age"/>
+          <field name="date"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="report_test.list1">
+      <field name="name">report_test list</field>
+      <field name="model">report.test</field>
+      <field name="arch" type="xml">
+        <form>
+        <group>
+          <field name="address"/>
+          <field name="age"/>
+          <field name="date"/>
+        </group>
+        </form>
+      </field>
+    </record>
+  
+
+    <record model="ir.actions.act_window" id="report_test.action_window">
+      <field name="name">report_test window</field>
+      <field name="res_model">report.test</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+
+    <menuitem name="report_test" id="report_test.menu_root"/>
+
+    <menuitem name="Menu 1" id="report_test.menu_1" parent="report_test.menu_root" action="report_test.action_window"/>
+ 
+
+  </data>
+</odoo>

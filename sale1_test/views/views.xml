@@ -1,0 +1,26 @@
+<odoo>
+  <data>
+    <!-- explicit list view definition -->
+
+    <record model="ir.ui.view" id="view_hr_wizard">
+      <field name="name">you cant cancel</field>
+    
+      <field name="model">hr.wizard</field>
+      <field name="arch" type="xml">
+        <form string="wizard form">
+          <group>
+
+            <field name="message" />
+            <field name="reason" string="reason"/>
+          </group>
+
+          <footer>
+
+            <button name="agent" string="OK" special="cancel" class="oe_highlight"/>
+
+          </footer>
+        </form>
+      </field>
+    </record>
+  </data>
+</odoo>

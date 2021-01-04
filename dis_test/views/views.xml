@@ -1,0 +1,25 @@
+<odoo>
+  <data>
+    <record model="ir.ui.view" id="dis_test_list">
+      <field name="name">dis_test list</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+       <xpath expr="//field[@name='amount_total']" position="after">
+          <field name="discount" string="enter discount %"/>
+          <field name="value" string="after discount"/>
+        </xpath>
+      </field>
+    </record>
+    <record model="ir.ui.view" id="dis_test_list1">
+      <field name="name">dis_test list1</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_quotation_tree_with_onboarding"/>
+      <field name="arch" type="xml">
+       <xpath expr="//field[@name='amount_total']" position="after">
+          <field name="value" string="after discount"/>
+       </xpath>
+      </field>
+    </record>
+  </data>
+</odoo>

@@ -1,0 +1,39 @@
+ <odoo>
+  <data>
+    
+
+    <record model="ir.ui.view" id="sub_test.list">
+      <field name="name">sub_test list</field>
+      <field name="model">hr.leave</field>
+      <field name="inherit_id" ref="hr_holidays.hr_leave_view_dashboard"/>
+      <field name="arch" type="xml">
+      
+
+      <record id="resource_calendar_offone" model="resource.calendar">
+          <field name="name">Standard 35 hours/week</field>
+          <field name="company_id" ref="base.main_company"/>
+          <field name="hours_per_day">7.0</field>
+          <field name="attendance_ids"
+              eval="[
+                  (0, 0, {'name': 'Monday Morning', 'dayofweek': '0', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                  (0, 0, {'name': 'Monday Afternoon', 'dayofweek': '0', 'hour_from': 13, 'hour_to': 16, 'day_period': 'afternoon'}),
+                  (0, 0, {'name': 'Tuesday Morning', 'dayofweek': '1', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                  (0, 0, {'name': 'Tuesday Afternoon', 'dayofweek': '1', 'hour_from': 13, 'hour_to': 16, 'day_period': 'afternoon'}),
+                  (0, 0, {'name': 'Wednesday Morning', 'dayofweek': '2', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                  (0, 0, {'name': 'Wednesday Afternoon', 'dayofweek': '2', 'hour_from': 13, 'hour_to': 16, 'day_period': 'afternoon'}),
+                  (0, 0, {'name': 'Thursday Morning', 'dayofweek': '3', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                  (0, 0, {'name': 'Thursday Afternoon', 'dayofweek': '3', 'hour_from': 13, 'hour_to': 16, 'day_period': 'afternoon'}),
+                  (0, 0, {'name': 'Friday Morning', 'dayofweek': '4', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                  (0, 0, {'name': 'Friday Afternoon', 'dayofweek': '4', 'hour_from': 13, 'hour_to': 16, 'day_period': 'afternoon'}),
+                  (0, 0, {'name': 'Saturday Morning', 'dayofweek': '5', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                  (0, 0, {'name': 'Saturday Morning', 'dayofweek': '5', 'hour_from': 13, 'hour_to': 16, 'day_period': 'afternoon'}), 
+                  (0, 0, {'name': 'Sunday Morning', 'dayofweek': '6', 'hour_from': 8, 'hour_to': 12, 'day_period': 'morning'}),
+                  (0, 0, {'name': 'Sunday Afternoon', 'dayofweek': '6', 'hour_from': 13, 'hour_to': 16, 'day_period': 'afternoon'}) 
+              ]"
+          />
+
+      </record>
+      </field>   
+    </record> 
+  </data>
+</odoo> 

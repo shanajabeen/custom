@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+        <report
+        id="report_id_xlx1"
+        model="sale.order"
+        string="Partners Excel Report"
+        report_type="xlsx"
+        name="project_test.test_report_id_xlx1"
+        file="project_test.test_report_id_xlx1"
+       />
+</data>
+</odoo>	 

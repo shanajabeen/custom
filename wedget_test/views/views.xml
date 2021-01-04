@@ -1,0 +1,57 @@
+<odoo>
+  <data>
+   
+
+    <record model="ir.ui.view" id="wedget_test_list">
+      <field name="name">wedgettest</field>
+      <field name="model">wedget.test</field>
+      <field name="arch" type="xml">
+        <tree>
+          <field name="val"/>
+        </tree>
+      </field>
+    </record>
+
+    <record model="ir.ui.view" id="wedget_test_list1">
+      <field name="name">wedgettest1</field>
+      <field name="model">wedget.test</field>
+      <field name="arch" type="xml">
+        <form>
+          <field name="val"/>
+        </form>
+      </field>
+    </record>
+    <!-- actions opening views on models -->
+
+    <record model="ir.actions.act_window" id="wedget_test.action_window">
+      <field name="name">wedget_test window</field>
+      <field name="res_model">wedget.test</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+
+    <!-- server action to the one above -->
+<!--
+    <record model="ir.actions.server" id="wedget_test.action_server">
+      <field name="name">wedget_test server</field>
+      <field name="model_id" ref="model_wedget_test_wedget_test"/>
+      <field name="state">code</field>
+      <field name="code">
+        action = {
+          "type": "ir.actions.act_window",
+          "view_mode": "tree,form",
+          "res_model": model._name,
+        }
+      </field>
+    </record>
+-->
+
+
+    <menuitem name="wedget_test1" id="wedget_test.menu_root"/>
+
+
+    <menuitem name="List" id="wedget_test.menu_1_list" parent="wedget_test.menu_root"
+              action="wedget_test.action_window"/>
+   
+  </data>
+</odoo>

@@ -1,0 +1,63 @@
+<odoo>
+  <data>
+    
+<!-- 
+    <record model="ir.ui.view" id="sale_test.list">
+      <field name="name">sale_test list</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml"> -->
+       <!-- <field name="sale_order_template_id" position="after"/>
+       <field name="newsale"/>  -->
+       <!-- <xpath expr="//field[@name='sale_order_template_id']" position="after">
+         <field name="newsale"/> 
+       </xpath>
+      </field>
+    </record> -->
+<!-- 
+    <record model="ir.ui.view" id="sale_test.list1">
+      <field name="name">sale_test list1</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="l10n_in_sale.view_order_form_inherit_l10n_in_sale"/>
+      <field name="arch" type="xml">
+      <xpath expr="//field[@name='l10n_in_journal_id']" position="after">
+  
+          <field name="submit" string="" widget="statinfo"/>
+      </xpath>
+      </field>
+    </record>  -->
+
+    <record model="ir.ui.view" id="sale_test.list2">
+      <field name="name">sale_test list1</field>
+      <field name="model">sale.order</field>
+      <field name="inherit_id" ref="sale.view_order_form"/>
+      <field name="arch" type="xml">
+         <xpath expr="//button[@name='action_cancel']" position="after">
+          <button name="okfun" string="ok" type="object"/>
+        </xpath>
+    
+      <button name="preview_sale_order" position="before">
+
+      <div class="oe_button_box" name="button_box_custom" attrs="{'invisible': [('check', '!=', True)]}">
+       
+        <button name="test" class="oe_stat_button">
+        <field name="check" string="Check" widget="statinfo"/>
+        </button>
+      </div>
+      </button>  
+        <!-- <button name="preview_sale_order" position="before">
+          <button name="hello"
+                class="oe_stat_button" icon="fa-files-o"  type="object" string="hello">
+              <field name="submit" position="move"/>
+          </button>
+        </button>  -->
+<!--         
+          <xpath expr="//page[@name='customer_signature']" position="after">
+          <page name="name1" string="myname">
+          </page>
+          </xpath> -->
+        
+      </field>
+    </record>  
+  </data>
+</odoo> 

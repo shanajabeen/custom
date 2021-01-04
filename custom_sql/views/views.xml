@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+
+        <report
+        id="report_id_xlx1"
+        model="account.move"
+        string="Partners Excel Report"
+        report_type="xlsx"
+        name="custom_sql.report_id_xlx"
+        file="custom_sql.report_id_xlx"
+       />
+        
+  <record id="view_test_report_my_id" model="ir.ui.view">
+        <field name="name">invoice Report</field>
+        <field name="model">test1.report</field>
+        <field name="arch" type="xml">
+            <form string="Choose The Details">
+                <group>
+                    <group>
+                        <field name="date_from" />
+                        <field name="date_to"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="test_report1" string="pdf print" type="object" class="oe_highlight" />
+                    <button name="test_report2" string="xl print" type="object" class="oe_highlight" />
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record> 
+
+
+
+    <record id="view_test_report_action1" model='ir.actions.act_window'>
+        <field name="name">invoice sql report</field>
+        <field name="res_model">test1.report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+      id="sale_test_view_record"
+      name="sql print"
+      action="view_test_report_action1" 
+      parent="account.menu_finance"/>
+
+
+	<report id="print_report_pdf"
+				string="Sample Report"
+				model="account.move"
+				report_type="qweb-pdf"
+				name="custom_sql.my_template"
+				file="custom_sql.my_template"/>
+
+	 <template id="my_template">
+        <t t-call="web.html_container">
+           
+                <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row" id="hash_header">
+                                <div class="col-12">
+
+
+        <table class="table table-condensed" bgcolor="#875A7B">
+          <tr>
+            <th>number</th>
+            <th>invoice date</th>
+            <th>due date</th>
+            <th>tax include</th>
+            <th>total</th>
+            <th>amount due</th>
+           <th>status</th>
+           <th>sale prson</th>
+           <th>customer</th>
+          </tr>
+           <t t-foreach="values" t-as="doc">
+          <tr>
+            <td>
+              <t t-esc="doc['id']"/>
+            </td>
+            <td>
+              <t t-esc="doc['invoice_date']"/>
+            </td>
+            <td>
+              <t t-esc="doc['invoice_date_due']"/>
+            </td>
+            <td>
+              <t t-esc="doc['amount_untaxed_signed']"/>
+            </td>
+            <td>
+              <t t-esc="doc['amount_total_signed']"/>
+            </td>
+            <td>
+              <t t-esc="doc['amount_residual_signed']"/>
+            </td>
+            <td>
+              <t t-esc="doc['state']"/>
+            </td>
+            <td>
+              <t t-esc="doc['name']"/>
+            </td>
+            <td>
+              <t t-esc="doc['customer_name']"/>
+            </td>
+            
+          </tr>
+                </t>
+
+          </table>
+                                </div>
+                            </div>
+                        </div>
+            </t>
+        </t>
+    </template>
+	
+	</data>
+</odoo>

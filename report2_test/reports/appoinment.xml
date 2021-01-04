@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+	<report id="print_report_pdf"
+				string="Sample Report"
+				model="account.move"
+				report_type="qweb-pdf"
+				name="report2_test.my_template"
+				file="report2_test.my_template"/>
+
+	 <template id="my_template">
+        <t t-call="web.html_container">
+           
+                <t t-call="web.external_layout">
+                        <div class="page">
+                            <div class="row" id="hash_header">
+                                <div class="col-12">
+
+
+        <table class="table table-condensed" bgcolor="#875A7B">
+          <tr>
+            <th>number</th>
+            <th>invoice date</th>
+            <th>due date</th>
+            <th>tax include</th>
+            <th>total</th>
+            <th>amount due</th>
+           <th>status</th>
+           <th>sale prson</th>
+          </tr>
+           <t t-foreach="docs" t-as="doc">
+          <tr>
+            <td>
+              <t t-esc="doc.name"/>
+            </td>
+            <td>
+              <t t-esc="doc.invoice_date"/>
+            </td>
+            <td>
+              <t t-esc="doc.invoice_date_due"/>
+            </td>
+            <td>
+              <t t-esc="doc.amount_untaxed_signed"/>
+            </td>
+            <td>
+              <t t-esc="doc.amount_total_signed"/>
+            </td>
+            <td>
+              <t t-esc="doc.amount_residual_signed"/>
+            </td>
+            <td>
+              <t t-esc="doc.state"/>
+            </td>
+            <td>
+              <t t-esc="doc.invoice_user_id.name"/>
+            </td>
+          </tr>
+                </t>
+
+          </table>
+                                </div>
+                            </div>
+                        </div>
+            </t>
+        </t>
+    </template>
+	
+	</data>
+</odoo>			

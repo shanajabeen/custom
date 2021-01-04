@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+   <record id="email_template" model="mail.template">
+        <field name="name">Email Template</field>
+        <field name="model_id" ref="direct_mail.model_direct_mail"/>
+        <field name="email_from">${object.sender}</field>
+        <field name="email_to" >${object.recipients_id}</field>
+        <field name="subject">Ref ${object.name or 'n/a' }</field>
+        <!-- <field name="auto_delete" eval="True"/> -->
+        <!-- <field name="lang">${object.partner_id.lang}</field> -->
+        <!-- <field name="report_template" ref="xlreport_test.report_id_xlx"/> -->
+        <!-- above single line code will work only a report without filter -->
+        <field name="body_html" type="html">
+            <p>Here is the details of open invoices
+             ${object.message_body}
+        </p>
+        </field>
+    </record> 
+</odoo>
