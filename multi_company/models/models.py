@@ -16,26 +16,37 @@ class createpurchaseorder(models.TransientModel):
 	new_order_line_ids = fields.One2many('getsale.orderdata', 'new_order_line_id',String="Order Line")
 	date_order = fields.Datetime(string='Order Date', required=True, copy=False, default=fields.Datetime.now)
 	mycompany_id = fields.Many2one('res.company', string='Company', required = True)
-
+	
 	@api.model
 	def default_get(self,  default_fields):
 		res = super(createpurchaseorder, self).default_get(default_fields)
 		data = self.env['sale.order'].browse(self._context.get('active_ids',[]))
+		company=data.company_id
 		update = []
 		for record in data.order_line:
-			update.append((0,0,{
-							'product_id' : record.product_id.id,
-							'product_uom' : record.product_uom.id,
-							'order_id': record.order_id.id,
-							'name' : record.name,
-							'product_qty' : record.product_uom_qty,
-							'price_unit' : record.price_unit,
-							'product_subtotal' : record.price_subtotal,
-							}))
+			quant_id = self.env['stock.quant'].search([('product_id','=',record.product_id.id),('company_id','=',company.id),('quantity','>',record.product_uom_qty)])
+			if quant_id.id == False:
+				update.append((0,0,{
+								'product_id' : record.product_id.id,
+								'product_uom' : record.product_uom.id,
+								'order_id': record.order_id.id,
+								'name' : record.name,
+								'product_qty' : record.product_uom_qty,
+								'price_unit' : record.price_unit,
+								'product_subtotal' : record.price_subtotal,
+								}))
 		res.update({'new_order_line_ids':update})
 		return res
 
 	def action_create_purchase_order(self):
+		data = self.env['sale.order'].browse(self._context.get('active_ids',[]))
+		company=data.company_id
+		#from 2 companys select the vendor company automatically
+		view_context = self.env.context
+		allowed_companies = view_context.get('allowed_company_ids', False)
+		for i in allowed_companies:
+			if i!= company.id:
+				self.mycompany_id=self.env['res.company'].search([('id','=',i)])
 		purchase_res = self.env['purchase.order']
 		sale_res = self.env['sale.order']
 		warehouse_res = self.env['stock.warehouse'].search([('name','=',self.mycompany_id.name)])
@@ -82,16 +93,16 @@ class createpurchaseorder(models.TransientModel):
 
 
 		return {
-            'res_model': 'purchase.order',
-            'type': 'ir.actions.act_window',
-            'context': {},
-            'view_mode': 'form',
-            'view_type': 'form',
+			'res_model': 'purchase.order',
+			'type': 'ir.actions.act_window',
+			'context': {},
+			'view_mode': 'form',
+			'view_type': 'form',
 			'res_id': purchase.id,
-            'view_id': self.env.ref("purchase.purchase_order_form").id,
-            'target': 'self'
-        }
-#-----------------------------------------------------------------------------------------------
+			'view_id': self.env.ref("purchase.purchase_order_form").id,
+			'target': 'self'
+		}
+	#-----------------------------------------------------------------------------------------------
 class Getsaleorderdata(models.TransientModel):
 	_name = 'getsale.orderdata'
 	_description = "Get Sale Order Data"
@@ -120,7 +131,7 @@ class bi_purchasemulti(models.Model):
 	
 	def action_confirm(self):
 		company =self.company_id
-
+	
 		for rec in self.order_line:
 			quant_id = self.env['stock.quant'].search([('product_id','=',rec.product_id.id),('company_id','=',company.id),('quantity','>',rec.product_uom_qty)])
 			if len(quant_id)==1:
