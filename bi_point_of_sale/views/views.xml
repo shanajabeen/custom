@@ -1,0 +1,95 @@
+<odoo>
+  <data>
+
+    <record model="ir.ui.view" id="bi_point_of_sale_tree">
+        <field name="name">bi_point_of_sale list</field>
+        <field name="model">bi.pointsale</field>
+        <field name="arch" type="xml">
+        <tree>
+        <field name="date"/>
+        <field name="total_a"/>
+        <field name="total_b"/>
+        <field name="total"/>
+        </tree>
+        </field>
+    </record>
+
+
+    <record id="bi_awards" model="ir.sequence">
+                <field name="name">Awards</field>
+                <field name="code">bi.pointsale</field>
+                <field name="prefix">BS</field>
+                <field name="padding">3</field>
+    </record>
+
+    <record model="ir.ui.view" id="bi_point_of_sale">
+      <field name="name">bi_point_of_sale list</field>
+      <field name="model">bi.pointsale</field>
+      <field name="arch" type="xml">
+        <form>
+        <sheet>
+        
+          <group>
+            <field name="date"/>
+          </group>
+
+          <group>
+            <group>  
+            <field name="cash_from_cash"/>
+            <field name="cash_by_google_pay"/>
+            </group> 
+            <group> 
+            <field name="cash_by_card"/>
+            <field name="cash_deposited"/>  
+            <field name="total_a"/>
+            </group>
+          </group>
+
+
+          <group>
+            <group>  
+            <field name="sales_from_pos"/>
+            <field name="sales_from_invoice"/>
+            </group> 
+
+            <group> 
+            <field name="cash_from_snack"/>
+            <field name="cash_from_water"/>
+            </group> 
+
+            <group>  
+            <field name="cash_for_purchase"/>
+            <field name="invoice_not_collected"/>
+            </group>
+
+            <group>  
+            <field name="prev"/>
+            <field name="total_b"/>
+            </group>
+
+          </group>
+
+          <group> 
+              <field name="total"/>
+          </group> 
+
+        </sheet>
+        </form>
+      </field>
+    </record>
+
+    <record model="ir.actions.act_window" id="bi_point_of_sale.action_window">
+      <field name="name">Balance Sheet</field>
+      <field name="res_model">bi.pointsale</field>
+      <field name="view_mode">tree,form</field>
+    </record>
+
+    <menuitem name="Point of sale form" id="bi_point_of_sale.menu_root"/>
+    <menuitem
+      id="model_name_menu"
+      name="Record"
+      action="bi_point_of_sale.action_window"
+      parent="bi_point_of_sale.menu_root"
+      sequence="10"/>
+  </data>
+</odoo>
