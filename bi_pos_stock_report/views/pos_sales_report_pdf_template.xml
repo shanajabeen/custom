@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <template id="pos_sales_report_pdf_template">
+            <t t-call="web.html_container">
+                <t t-call="web.basic_layout">
+                <div class="page">
+                    <div align="center" style="border:1px solid black;margin:0 auto;padding:0 auto;font-size:25px">
+                        <strong>Z Report</strong>
+                    </div>
+                    <t t-foreach="docs" t-as="o">
+                        <table style="width:90%;margin-top:15px;">
+                            <tr>
+                                <td class="text-left">
+                                    Report Date
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="o.get_current_date()"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Report Time
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="o.get_current_time()"/>
+                                </td>
+                            </tr>
+                        </table>
+                        <table style="width:90%;margin-top:15px;">
+                            <tr>
+                                <td class="text-left">
+                                    Register #
+                                </td>
+                                <td class="text-right">
+                                    1
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Batch #
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="o.name"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Batch Status
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="o.state"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Started at
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="o.get_session_date(o.start_at)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Ended at
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="o.get_session_date(o.stop_at)"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Cashier
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="o.user_id.name"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                            <td style="width:50%; !important" class="text-right">
+                                        =====================
+                            </td>
+                            </tr>
+
+                        </table>
+
+                        <table style="width:90%;margin-top:15px;">
+                            <t t-foreach="var" t-as="v">
+                                <tr>
+                                    <td class="text-left">
+                                    <span t-esc="v"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="float(data['M'][v])"/>
+                                    </td>
+                                </tr>
+                            </t>  
+
+                            <tr>
+                            <td style="width:50%; !important" class="text-right">
+                                        =====================
+                            </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left">
+                                    Total Sale
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['total_sale'],2))"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left">
+                                    Round Amount
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['round'],2))" />
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Net Total 
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['net_total'],2))"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                            <td style="width:50%; !important" class="text-right">
+                                        =====================
+                            </td>
+                            </tr>
+
+                            <tr>
+
+                                <td class="text-left">
+                                    Cash 
+                                </td>
+                                
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['payment']['Cash'],2))"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left">
+                                    Bank
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['payment']['Bank'],2))"/>
+                                </td>
+                                
+                            </tr>
+
+                            
+                            
+                            <tr>
+                            <td style="width:50%; !important" class="text-right">
+                                        =====================
+                            </td>
+                            </tr>
+
+                          
+                          
+                        </table>
+                        <table style="width:90%;margin-top:15px;">
+                            <tr>
+                                <td class="text-left">
+                                    VAT Amount Collected
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['vat'],2))"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                            <td style="width:50%; !important" class="text-right">
+                                    =====================
+                            </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left">
+                                    Opening Cash Balance
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['open1'],2))"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left">
+                                    Cash Sale
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['net_total'],2))"/>
+                                </td>
+                            </tr>
+
+                            <tr>
+                                <td class="text-left">
+                                    Closing Cash Balance
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['close1'],2))"/>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="text-left">
+                                    Difference
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(round(data['diff'],2))"/>
+                                </td>
+                            </tr>
+                        </table>
+                       <table style="width:90%;margin-top:15px;">
+
+                          
+
+                          
+                            
+                        </table>
+                       
+                        <!-- <t t-if="o.get_product_category()"> -->
+                            
+                            <table style="width:90%;margin-top:15px;">
+                               <tr>
+                            <td style="width:50%; !important" class="text-right">
+                                    =====================
+                            </td>
+                            </tr>
+                                <tr>
+                                <td class="text-left">
+                                    No.Of Invoices
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="float(data['invoice'])" />
+                                </td>
+                                </tr>
+                            </table>
+                            
+                        <!-- </t> -->
+                    </t>
+                </div>
+                </t>
+            </t>
+        </template>
+    </data>
+</odoo>

@@ -1,0 +1,32 @@
+{
+    'name': 'POS Stock Reports',
+    'category': 'Point of Sale',
+    'summary': """POS Stock Report""",
+    'description': """
+POS Report
+""",
+    'author': "Bassam Infotech LLP",
+    'website': "http://www.bassaminfotech.com",
+    'version': '12.0.0',
+    'depends': ['point_of_sale', 'base'],
+    'data': [
+        'reports.xml',
+        'views/bi_pos_stock_report.xml',
+        'views/pos_sales_report_pdf_template.xml',
+        'views/sales_details_pdf_template.xml',
+        'views/front_sales_report_pdf_template.xml',
+        'views/pos_config_view.xml',
+        'views/front_inventory_session_pdf_report_template.xml',
+        'views/front_inventory_session_thermal_report_template.xml',
+        'views/front_inventory_location_pdf_report_template.xml',
+        'views/front_inventory_location_thermal_report_template.xml',
+        'views/pos_static_register.xml',
+        'wizard/wizard_pos_sale_report_view.xml',
+        'wizard/wizard_sales_details_view.xml',
+        'wizard/wizard_pos_x_report.xml',
+        'security/ir.model.access.csv',
+    ],
+    'qweb': ['static/src/xml/pos.xml'],
+    'installable': True,
+    'auto_install': False,
+}
