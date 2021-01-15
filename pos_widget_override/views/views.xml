@@ -2,7 +2,7 @@
   <data>
   <template id="assets" inherit_id="point_of_sale.assets">
         <xpath expr="." position="inside">
-            <script type="text/javascript" src="/pos_hr/static/src/js/screens.js"></script>
+            <script type="text/javascript" src="/pos_widget_override/static/src/js/wedget_override.js"></script>
         </xpath>
    </template>
   </data>
