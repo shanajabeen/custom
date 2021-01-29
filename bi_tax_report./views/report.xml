@@ -1,0 +1,15 @@
+ 
+<odoo>
+<data>
+
+ <report
+   id="invoice_report_pdf"
+   model="account.move"
+   string="Report tax"
+   report_type="qweb-pdf"
+   name="bi_tax_report.my_template"
+   file="bi_tax_report.my_template"
+   paperformat="bi_tax_report.paperformat_euro"
+  />
+ </data>
+</odoo>
