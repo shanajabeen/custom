@@ -1,0 +1,363 @@
+<odoo>
+  <data>
+
+
+
+  <record id="paperformat_euro" model="report.paperformat">
+      <field name="name">European A4</field>
+      <field name="default" eval="True" />
+      <field name="format">A4</field>
+      <field name="page_height">0</field>
+      <field name="page_width">0</field>
+      <field name="orientation">Portrait</field>
+      <field name="margin_top">40</field>
+      <field name="margin_bottom">23</field>
+      <field name="margin_left">7</field>
+      <field name="margin_right">7</field>
+      <field name="header_spacing">25</field>
+      <field name="dpi">90</field>
+  </record>
+
+  <template id="my_template">
+        <t t-call="web.html_container">  
+        <t t-call="bi_report_template.gtrack_report_template">
+       
+        <t t-foreach="docs" t-as="o">
+        <div class="page" >
+        <div class="row" id="hash_header">
+        <div class="col-12">
+        <table   width="100%">
+        <tr>
+        </tr>
+          <tr>
+            <td width="10%" style="font-size:13px;">E-Mail</td>
+            <td width="17%" style="font-size:13px;"><span  t-field="o.company_id.email"/></td>
+            <td width="39%" ></td>
+            <td width="17%" style="text-align:right;font-size:13px;">Phone</td>
+            <td width="17%" style="text-align:right;font-size:13px;"><span  t-field="o.company_id.phone"/></td>
+          </tr>
+          <tr>
+            <td width="10%" style="font-size:13px;">Web</td>
+            <td width="17%" style="font-size:13px;"><span  t-field="o.company_id.website"/></td>
+            <th width="39%" style="text-align:center;">TAX INVOICE</th>
+            <td width="17%" style="text-align:right;font-size:13px;">Mobile</td>
+            <td width="17%"></td>
+          </tr>
+          </table>
+       
+          <table style="width:100%;border:1px solid black;border-collapse: collapse;">
+            <tr >
+              <td width="25%" style="font-size:13px">Gst Number:</td>
+              <td width="25%" style="font-size:13px;border-right: 1px solid black;"></td>
+              <td width="25%" style="font-size:13px;">Veh.No :</td>
+              <td width="25%" style="font-size:13px;"></td>
+
+            </tr> 
+            <tr > 
+              <td width="25%" style="font-size:13px;">Invoice Number:</td>
+              <td width="25%" style="font-size:13px;border-right: 1px solid black;"><span t-field="o.name"/></td>
+              <td width="25%" style="font-size:13px;">Date &#38; Time of Supply:</td>
+              <td width="25%" style="font-size:13px;"><span t-field="o.invoice_date_due"/></td>
+            </tr>
+            <tr>
+              <td width="25%" style="font-size:13px;">Invoice Date:</td>
+              <td width="25%" style="font-size:13px;border-right: 1px solid black"><span t-field="o.invoice_date"/></td>
+              <td width="25%" style="font-size:13px">Place OF Supply:</td>
+              <td width="25%" style="font-size:13px"></td>
+          </tr>
+          </table>
+      
+
+      <table style="width:100%;border:1px solid black;border-collapse: collapse;">
+        <tr>
+          <th width="50%" style="border-right: 1px solid black">Details of Receiver (Billed to)</th>
+          <th width="50%">Details of Consignee (Shipped to)</th>
+        </tr>
+      </table>
+
+      <table style="width:100%;border:1px solid black;border-collapse: collapse;">
+        <tr>
+          <td width="25%" style="font-size:13px;">Name:</td>
+          <td width="25%" style="border-right: 1px solid black;font-size:13px;"><span  t-field="o.partner_id.name"/></td>
+          <td width="25%" style="font-size:13px;">Name:</td>
+          <td width="25%" style="font-size:13px;"><span  t-field="o.partner_id.name"/></td>
+        </tr>
+        <tr>
+          <td width="25%" style="font-size:13px;">Address:</td>
+          <td width="25%" style="border-right: 1px solid black;font-size:13px;"><span  t-field="o.partner_id.street"/><span  t-field="o.partner_id.street2"/></td>
+          <td width="25%" style="font-size:13px;">Address:</td>
+          <td width="25%" style="font-size:13px;"><span  t-field="o.partner_id.street"/></td>
+        </tr>
+        <tr>
+          <td width="25%" style="font-size:13px;">State:</td>
+          <td width="25%" style="border-right: 1px solid black;font-size:13px;"><span  t-field="o.partner_id.city"/></td>
+          <td width="25%" style="font-size:13px;"></td>
+          <td width="25%" style="font-size:13px;"></td>
+        </tr>
+        <tr>
+          <td width="25%" style="font-size:13px;">State Code:</td>
+          <td width="25%" style="border-right: 1px solid black;font-size:13px;"></td>
+          <td width="25%" style="font-size:13px;"></td>
+          <td width="25%" style="font-size:13px;"></td>
+        </tr>
+        <tr>
+          <td width="25%" style="font-size:13px;">Mobile No:</td>
+          <td width="25%" style="border-right: 1px solid black;font-size:13px;"><span  t-field="o.partner_id.mobile"/></td>
+          <td width="25%" style="font-size:13px;"></td>
+          <td width="25%" style="font-size:13px;"></td>
+        </tr>
+        <tr>
+          <td width="25%" style="font-size:13px;">GSTIN Number:</td>
+          <td width="25%" style="border-right: 1px solid black;font-size:13px;"><span  t-field="o.partner_id.vat"/></td>
+          <td width="25%" style="font-size:13px;"></td>
+          <td width="25%" style="font-size:13px;"></td>
+        </tr>
+      </table>
+    
+      <table class ="table table-lg m-0 table-borderless border border-right-0 border-left-0 border-info" style="border-collapse: collapse;width:100%;" >
+              <thead>
+                  <tr width="100%" style="border-bottom: 1px solid black;font-size:13px;">
+                      <th width="5%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">Sl No</th>
+                      <th width="15%" class="text-left" style="font-size:13px; border: 1px solid black;font-size:13px;">Description of Goods</th>
+                      <th width="10%" class="text-right" style="font-size:13px; border: 1px solid black;font-size:13px;">HSN Code</th>
+                      <th width="10%" class="text-right" style="font-size:13px; border: 1px solid black;font-size:13px;">QTY</th>
+                      <th width="10%" class="text-right" style="font-size:13px; border: 1px solid black;font-size:13px;">UOM</th>
+                      <th width="10%" class="text-right" style="font-size:13px; border: 1px solid black;font-size:13px;">Unit Price</th>
+                      <th width="10%" class="text-right" style="font-size:13px; border: 1px solid black;font-size:13px;">Total</th>
+                      <th width="10%" class="text-right" style="font-size:13px; border: 1px solid black;font-size:13px;">Scheme Discount</th>
+                      <th width="10%" class="text-right" style="font-size:13px; border: 1px solid black;font-size:13px;">Cash Discount</th>
+                      <th width="10%" class="text-right" style="font-size:13px; border: 1px solid black;font-size:13px;">Taxable Value</th>
+                  </tr>
+              </thead>
+              <tbody>
+                  <t t-set="sl_no" t-value="1"/>
+                  <t t-set="total_qty" t-value="0"/>
+                  <t t-set="scheme_qty" t-value="0"/>
+                  <t t-set="cash_qty" t-value="0"/>
+                  <t t-set="tax_qty" t-value="0"/>
+                  <t t-set="total_price" t-value="0"/>
+                  <t t-set="scheme" t-value="0"/>
+                  <t t-set="cash" t-value="0"/>
+                  <t t-set="tax" t-value="0"/>
+                  <t t-set="tax_tot" t-value="0"/>
+                  <t t-set="igst" t-value="0"/>
+                  <t t-set="cgst" t-value="0"/>
+                  <t t-set="sgst" t-value="0"/>
+
+                  <t t-foreach="o.invoice_line_ids" t-as="line">
+                      <tr width="100%" style="border-bottom: 1px solid black;font-size:13px;">
+                          <td width="5%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                              <span t-esc="sl_no"/>
+                              <t t-set="sl_no" t-value="sl_no+1"/>
+                          </td >
+                          <td width="15%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                              <t t-if="line.product_id.name"><span t-field="line.product_id.name"/></t>
+                          </td>
+                          <td style="font-size:13px;border: 1px solid black;font-size:13px;"><t t-if="line.product_id.l10n_in_hsn_code"><span t-field="line.product_id.l10n_in_hsn_code"/>
+                          </t></td>
+
+
+                          <td width="10%" class="text-right" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                              <t t-if="line.quantity"><span t-field="line.quantity"/></t>
+                              <t t-set="total_qty" t-value="total_qty+line.quantity"/>
+                          </td>
+                          <td style="font-size:13px;border: 1px solid black;font-size:13px;"><t t-if="line.product_id.uom_id"><span t-field="line.product_id.uom_id"/>
+                          </t></td> 
+                          
+
+                          <td width="10%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                              <t t-if="line.price_unit"><span t-field="line.price_unit"/></t>
+                              <t t-set="total_price" t-value="line.quantity*line.price_unit"/>
+                          </td>
+
+                           <td width="10%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                              <span t-esc="total_price"/>
+                              <t t-set="scheme" t-value="line.scheme_discount_amount"/>
+                              <t t-set="cash" t-value="line.cash_discount_amount"/>
+                              <t t-set="tax" t-value="total_price-(scheme+cash)"/>
+
+                          </td>
+
+                          <td width="10%" class="text-right" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                              <t t-if="line.scheme_discount"><span t-esc="scheme"/></t>
+                              <t t-set="scheme_qty" t-value="scheme_qty+scheme"/>
+                          </td>
+                          <td width="10%" class="text-right" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                              <t t-if="line.cash_discount"><span t-esc="cash"/></t>
+                              <t t-set="cash_qty" t-value="cash_qty+cash"/>
+                          </td>
+                          <td width="10%" class="text-right" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                              <span t-esc="tax"/>
+                              <t t-set="tax_tot" t-value="tax_tot+tax"/>
+                          </td>
+                      </tr>
+                  </t>
+       
+              <tr width="100%" style="border: 1px solid black;font-size:13px;border-bottom-width: 2px;">
+                  <td  colspan="3" class="text-left" style="font-size:13px">E&#38;OE</td>
+                  <td  class="text-right"><span t-esc="total_qty"/></td>
+                  <td colspan="3" class="text-left"></td>
+                  <td class="text-right"><span t-esc="scheme_qty"/></td>
+                  <td class="text-right"><span t-esc="cash_qty"/></td>
+                  <td class="text-right" style="font-size:13px;border-right: 1px solid black;font-size:13px;"><span t-esc="tax_tot"/></td>
+              </tr>
+          
+              <tr width="100%" style="font-size:13px;width:100%;border:1px solid black;border-collapse: collapse;">
+                  
+                  <td  colspan="5" class="text-left" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black">Invoice Value (In Words)</td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-top: 1px solid black;">Total IGST <t t-set="igst" t-value="(o.amount_tax)-(o.amount_untaxed)"/></td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;border: 1px black"><t t-if="igst"><span t-esc="igst"/></t><t t-set="cgst" t-value="igst/2"/><t t-set="sgst" t-value="igst/2"/></td>
+              </tr>  
+
+              <tr width="100%" style="font-size:13px;width:100%;border:1px solid black;border-collapse: collapse;">
+                  <td  colspan="5" class="text-left" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black"></td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black">Total SGST</td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;border: 1px black"><t t-if="sgst"><span t-esc="sgst"/></t></td>
+              </tr> 
+
+              
+              <tr width="100%" style="font-size:13px;width:100%;border:1px solid black;border-collapse: collapse;">
+                  <td  colspan="5" class="text-left" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black">Certified that the Particulars given above are true and correct</td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black">Total CGST</td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;border-right: 1px black;border-top: 1px black"><t t-if="cgst"><span t-esc="cgst"/></t></td>
+              </tr>  
+
+               <tr width="100%" style="font-size:13px;width:100%;border:1px solid black;border-collapse: collapse;">
+                  <td  colspan="5" class="text-left" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black">YOUR TERM &#38; CONDITION OF SALE</td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black">Round To</td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;border: 1px black"></td>
+              </tr> 
+
+              <tr style="font-size:13px;width:100%;border-left:1px solid black;border-right:1px solid black;">
+                  <td  colspan="2" class="text-left" style="font-size:13px;border-top: 1px solid black"><b>BANK DETAILS :-</b></td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black"></td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;"><b>KFC</b></td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black"></td>
+              </tr>  
+
+               <tr style="font-size:13px;width:100%;border-left:1px solid black;border-right:1px solid black;">
+                  <td  colspan="2" class="text-left" style="font-size:13px;">Bank Name</td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;"><span  t-field="o.company_id.partner_id.bank_ids[0].bank_id"/></td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;border-bottom: double;"><b>Total:</b></td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;border-bottom: double;"><b></b></td> 
+              </tr> 
+
+
+               <tr style="font-size:13px;width:100%;border-left:1px solid black;border-right:1px solid black;">
+                  <td  colspan="2" class="text-left" style="font-size:13px;">A/c Name</td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;"></td>
+                  <td  colspan="3" class="text-left" style="font-size:13px;">Electronic Reference Number :</td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;"><b></b></td> 
+              </tr> 
+
+
+              <tr style="font-size:13px;width:100%;border-left:1px solid black;border-right:1px solid black;">
+                  <td  colspan="2" class="text-left" style="font-size:13px;">A/c Number</td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;"><span  t-field="o.company_id.partner_id.bank_ids[0].acc_number"/></td>
+                  <td  colspan="3" class="text-left" style="font-size:13px;"><b>KGM APPLIANCES LLP</b></td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;"></td> 
+              </tr> 
+              
+              <tr style="font-size:13px;width:100%;border-left:1px solid black;border-right:1px solid black;">
+                  <td  colspan="2" class="text-left" style="font-size:13px;">IFSC</td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;"></td>
+                  <td  colspan="3" class="text-left" style="font-size:13px;">Authorised Signatory</td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;"></td> 
+              </tr> 
+
+                <tr style="font-size:13px;width:100%;border-left:1px solid black;border-right:1px solid black;border-bottom:1px solid black;">
+                  <td  colspan="2" class="text-left" style="font-size:13px;">Branch</td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;"></td>
+                  <td  colspan="3" class="text-left" style="font-size:13px;"></td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;"></td> 
+              </tr> 
+            
+              </tbody>       
+          </table>
+         
+          <br/>
+          
+           <div class="row" style="page-break-inside: avoid !important;">
+            <div class="col-8">
+            <table class="table table-lg m-0 table-borderless border  border-right-0 border-left-0 border-info" style="border-collapse: collapse; width:70%;">
+                  <tr style="font-size:13px;border-left:1px solid black;border-right:1px solid black;border-bottom:1px solid black;">
+                  <td   class="text-left" style="font-size:13px;border-right: 1px solid black;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">HSN/SAC</td>
+                  <td   class="text-left" style="font-size:13px;border-right: 1px solid black;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">Sales</td>
+                  <td   class="text-left" style="font-size:13px;border-right: 1px solid black;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">SGST%</td>
+                  <td   class="text-left" style="font-size:13px;border-right: 1px solid black;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">Amount</td>
+                  <td   class="text-left" style="font-size:13px;border-right: 1px solid black;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">CGST%</td>
+                  <td  class="text-left" style="font-size:13px;border-right: 1px solid black;border-left: 1px solid black;border-top: 1px solid black;border-bottom: 1px solid black;">Amount</td>
+                  </tr>
+                  <t t-set="val" t-value="0"/>
+
+                  <t t-foreach="timesheet" t-as="line">
+                  <tr>
+                   <td width="10%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                      <t t-esc="timesheet[line][0]"/>
+                      
+                   </td>
+                   
+                   <td width="10%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                      <t t-esc="timesheet[line][1]"/>
+                      <t t-set="val" t-value="timesheet[line][1]"/>
+                   </td>
+                    
+                   <td width="10%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                  
+                     <t t-if="o.invoice_line_ids.tax_ids.children_tax_ids[1].amount"><t t-esc="o.invoice_line_ids.tax_ids.children_tax_ids[1].amount"/></t>
+
+                   </td>
+
+                   <td width="10%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                  
+                    <t t-esc="((o.invoice_line_ids.tax_ids.children_tax_ids[1].amount)*val)/100"/>
+                   </td>
+                   <td width="10%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                  
+                    <t t-if="o.invoice_line_ids.tax_ids.children_tax_ids[1].amount"><t t-esc="o.invoice_line_ids.tax_ids.children_tax_ids[1].amount"/></t>
+
+                   </td>
+
+                   <td width="10%" class="text-left" style="font-size:13px;border: 1px solid black;font-size:13px;">
+                  
+                    <t t-esc="((o.invoice_line_ids.tax_ids.children_tax_ids[1].amount)*val)/100"/>
+                   </td>
+                  
+
+                  </tr>
+                  </t>
+              </table>
+            </div> 
+            <div class="col-4">
+              <table>
+                <tr style="font-size:13px;">
+                  <td   class="text-left" style="font-size:13px;">Old Balance :</td>
+                  <td   class="text-left" style="font-size:13px;"></td>
+                </tr>
+
+                <tr style="font-size:13px;">
+                  <td   class="text-left" style="font-size:13px;">Sales:</td>
+                  <td   class="text-left" style="font-size:13px;"></td>
+                </tr>
+            
+                <tr style="font-size:13px;">
+                  <td   class="text-left" style="font-size:13px;">Balance:</td>
+                  <td   class="text-left" style="font-size:13px;"></td>
+                </tr>
+                
+              </table>
+            </div>
+            </div>
+
+
+
+          </div>
+          </div>
+          </div>
+          </t>
+        </t>
+        </t>
+    </template>
+
+  </data>
+</odoo>
