@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+        <report
+        id="customer_care_report_id_xlx"
+        model="customer.care_report"
+        string="Partners Excel Report"
+        report_type="xlsx"
+        name="bi_customer_care_report.test_report_id_xlx"
+        file="bi_customer_care_report.test_report_id_xlx"
+       />
+       
+</data>
+</odoo>	   

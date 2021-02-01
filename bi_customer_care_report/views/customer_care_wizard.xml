@@ -1,0 +1,50 @@
+<odoo>
+  <data>
+    <record id="view_test_report_wizard" model="ir.ui.view">
+        <field name="name">customer care Report</field>
+        <field name="model">customer.care_report</field>
+        <field name="arch" type="xml">
+            <form string="Choose The Details">
+                <group>
+                    <group>
+                        <field name="date_from" />
+                        <field name="date_to"/>
+                        <field name="employee_id"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="customer_care_report" string="Print here" type="object" class="oe_highlight" />
+                    
+                    <button string="Cancel" class="oe_link" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record> 
+
+    
+
+
+    <record id="view_test_report_action" model='ir.actions.act_window'>
+        <field name="name">Customer Care Report</field>
+        <field name="res_model">customer.care_report</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem
+      id="sale_test_view_record"
+      name="Customer Care Report"
+      action="view_test_report_action" 
+      parent="bi_daily_visit_report.daily_visit_report_root"/>
+  </data>
+  <record model="ir.ui.view" id="dis_test_list">
+      <field name="name">test list</field>
+      <field name="model">bi.complaint.registration</field>
+      <field name="inherit_id" ref="bi_field_service.bi_complaint_registration_form"/>
+      <field name="arch" type="xml">
+       <xpath expr="//field[@name='complaint']" position="after">
+          <field name="emp_id" invisible="1" />
+        </xpath>
+      </field>
+    </record>
+</odoo>
