@@ -140,7 +140,6 @@
                   <t t-set="cash" t-value="0"/>
                   <t t-set="tax" t-value="0"/>
                   <t t-set="tax_tot" t-value="0"/>
-                  <t t-set="igst" t-value="0"/>
                   <t t-set="cgst" t-value="0"/>
                   <t t-set="sgst" t-value="0"/>
 
@@ -199,18 +198,19 @@
                   <td colspan="3" class="text-left"></td>
                   <td class="text-right"><span t-esc="scheme_qty"/></td>
                   <td class="text-right"><span t-esc="cash_qty"/></td>
-                  <td class="text-right" style="font-size:13px;border-right: 1px solid black;font-size:13px;"><span t-esc="tax_tot"/></td>
+                  <td class="text-right" style="font-size:13px;border-right: 1px solid black;font-size:13px;"><span t-esc="round(tax_tot,2)"/></td>
               </tr>
           
               <tr width="100%" style="font-size:13px;width:100%;border:1px solid black;border-collapse: collapse;">
                   
                   <td  colspan="5" class="text-left" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black">Invoice Value (In Words)</td>
-                  <td  colspan="3" class="text-right" style="font-size:13px;border-top: 1px solid black;">Total IGST <t t-set="igst" t-value="(o.amount_tax)-(o.amount_untaxed)"/></td>
-                  <td  colspan="2" class="text-right" style="font-size:13px;border: 1px black"><t t-if="igst"><span t-esc="igst"/></t><t t-set="cgst" t-value="igst/2"/><t t-set="sgst" t-value="igst/2"/></td>
+                  <td  colspan="3" class="text-right" style="font-size:13px;border-top: 1px solid black;">Total IGST </td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;border: 1px black"><t t-if="igst"><span t-esc="round(igst['amt'],2)"/><t t-set="cgst" t-value="round(igst['amt']/2,2)"/><t t-set="sgst" t-value="round(igst['amt']/2,2)"/></t></td>
+                 
               </tr>  
 
               <tr width="100%" style="font-size:13px;width:100%;border:1px solid black;border-collapse: collapse;">
-                  <td  colspan="5" class="text-left" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black"></td>
+                  <td  colspan="5" class="text-left" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black"><span t-esc="words['amt']"/></td>
                   <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black">Total SGST</td>
                   <td  colspan="2" class="text-right" style="font-size:13px;border: 1px black"><t t-if="sgst"><span t-esc="sgst"/></t></td>
               </tr> 
@@ -232,14 +232,14 @@
                   <td  colspan="2" class="text-left" style="font-size:13px;border-top: 1px solid black"><b>BANK DETAILS :-</b></td>
                   <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black"></td>
                   <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;"><b>KFC</b></td>
-                  <td  colspan="2" class="text-right" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black"></td>
+                  <td  colspan="2" class="text-right" style="font-size:13px;border-right: 1px solid black;border-top: 1px solid black"><span t-esc="kfc['amt']"/><t t-set="total" t-value="round(igst['amt']+cgst+sgst+kfc['amt']+tax_tot,2)"/></td>
               </tr>  
 
                <tr style="font-size:13px;width:100%;border-left:1px solid black;border-right:1px solid black;">
                   <td  colspan="2" class="text-left" style="font-size:13px;">Bank Name</td>
                   <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;"><span  t-field="o.company_id.partner_id.bank_ids[0].bank_id"/></td>
                   <td  colspan="3" class="text-right" style="font-size:13px;border-right: 1px solid black;border-bottom: double;"><b>Total:</b></td>
-                  <td  colspan="2" class="text-right" style="font-size:13px;border-bottom: double;"><b></b></td> 
+                  <td  colspan="2" class="text-right" style="font-size:13px;border-bottom: double;"><b><span t-esc="total"/></b></td> 
               </tr> 
 
 
@@ -330,21 +330,22 @@
             </div> 
             <div class="col-4">
               <table>
+              
                 <tr style="font-size:13px;">
                   <td   class="text-left" style="font-size:13px;">Old Balance :</td>
-                  <td   class="text-left" style="font-size:13px;"></td>
+                  <td   class="text-left" style="font-size:13px;"><span t-field="o.partner_id.partner_credit"/></td>
                 </tr>
 
                 <tr style="font-size:13px;">
                   <td   class="text-left" style="font-size:13px;">Sales:</td>
-                  <td   class="text-left" style="font-size:13px;"></td>
+                  <td   class="text-left" style="font-size:13px;"><t t-esc="total"/><t t-set="balance" t-value="(o.partner_id.partner_credit)+total"/></td>
                 </tr>
             
                 <tr style="font-size:13px;">
                   <td   class="text-left" style="font-size:13px;">Balance:</td>
-                  <td   class="text-left" style="font-size:13px;"></td>
+                  <td   class="text-left" style="font-size:13px;"><t t-esc="balance"/></td>
                 </tr>
-                
+               
               </table>
             </div>
             </div>
