@@ -27,7 +27,6 @@ class Bipricelist(models.Model):
             'purchase_line_ids': val,
             }  
         self.update(purchase_line_dic)
-        
         return True
 
  
