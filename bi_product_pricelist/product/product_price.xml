@@ -1,0 +1,51 @@
+<odoo>
+  <data>
+    
+  </data>
+
+  <record model="ir.ui.view" id="pricelist_test_list">
+    <field name="name">price list</field>
+    <field name="model">product.pricelist</field>
+    <field name="inherit_id" ref="product.product_pricelist_view"/>
+    <field name="arch" type="xml">
+     <xpath expr="//form//sheet" position="before">
+      <header>
+      <button name="action_name" string="Confirm" type="object" class="oe_highlight"/>
+      </header>   
+      </xpath>
+    </field>
+  </record>
+
+  <record model="ir.ui.view" id="pricelist_order_list">
+    <field name="name">price order list</field>
+    <field name="model">product.pricelist</field>
+    <field name="inherit_id" ref="product.product_pricelist_view"/>
+    <field name="arch" type="xml">
+     <xpath expr="//field[@name='product_tmpl_id']" position="after">
+      <field name="tax" string="Price Include Tax"/>
+      <field name="percentage" string="Tax %"/>    
+      </xpath>
+    </field>
+  </record>
+
+  <record id="bi_pricelist_wizard" model="ir.ui.view">
+    <field name="name">bi.pricelist.wizard</field>
+    <field name="model">bi.pricelist.wizard</field>
+    <field name="arch" type="xml">
+    <form string="Price List">
+    <group>
+    <field name="product_tmpl_id" string="Products" widget="many2many_tags" >
+      <tree> 
+        <field name="name" />
+      </tree>
+    </field>
+    </group>
+    <footer>
+    <button name="action_submit" string="submit" type="object" class="btn-primary"/>
+    <button string="Cancel" class="btn-default" special="cancel"/>
+    </footer>
+    </form>
+    </field>
+    </record>
+
+</odoo>
