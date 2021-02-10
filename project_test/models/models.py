@@ -24,6 +24,7 @@ class project_test(models.TransientModel):
           
         }
         sale = record.create(data)
+        # passing the created sale id to sale_order_ids for displaying its view in project sale_order id is created in project for making link
         project_task_id = self.env['project.task'].browse(self.env.context['active_id'])
         project_task_id.sale_order_ids = [(4, sale.id)]
      
@@ -49,7 +50,7 @@ class project_button(models.Model):
         self.sale_order_ids = self.mapped('sale_order_ids')
         for partner in self:
             partner.vehicle_count =len(partner.sale_order_ids)
-             
+            
     
     def get_vehicles(self):
         sale_order_ids = self.mapped('sale_order_ids')
