@@ -1,0 +1,28 @@
+<odoo>
+  <data>
+      
+ <record id="sale_inherit_view_order" model="ir.ui.view">
+        <field name="name">sale.oredro.inherit</field>
+        <field name="model">sale.order</field>
+        <field name="inherit_id" ref="sale.view_order_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='partner_id']" position="after">
+                <field name="type_" />
+                <field name="emirates" />                
+            </xpath>
+           
+        </field>
+    </record>
+
+
+   
+
+    <record id="sequence_service" model="ir.sequence">
+      <field name="name">Sequence Service 1</field>
+      <field name="code">self.service2</field>
+      <field name="padding">4</field>
+      <field name="implementation">standard</field>
+    </record>
+
+  </data>
+</odoo>
