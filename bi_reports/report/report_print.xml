@@ -1,0 +1,12 @@
+<odoo>
+
+  
+
+    <report id="class_result_qweb"
+            string="classWise Result"
+            model="exam.classwise.result"
+            report_type="qweb-pdf"
+            file="bi_reports.exam_result_class"
+            name="bi_reports.exam_result_class"/>
+
+</odoo>

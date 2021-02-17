@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+
+<odoo>
+    <record id="wizard_class_report" model="ir.ui.view">
+     <field name="name">exam.class.result.form.wizard</field>
+     <field name="model">exam.classwise.result</field>
+     <field name="arch" type="xml">
+         <form string="Grade wise Results">
+             <group col="4" colspan="4">
+                 <field name="year" widget="selection" required="1"/>
+                 <field name="exam_name" widget="selection" required="1"/>
+                 <field name="standard_id" widget="selection" required="1"/>
+             </group>
+             <footer>
+                 <button name="print_class_report" string="class Report" type="object"/>
+                 <button special="cancel" string="Cancel"/> 
+             </footer>
+         </form>
+     </field>
+    </record>
+    <record id="wizard_action_classwise_exam_result_form" model="ir.actions.act_window">
+        <field name="name">classwise Result</field>
+        <field name="res_model">exam.classwise.result</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <menuitem id="menu_exam_class_result" name="classwise Exam Results" parent="bi_exam.menu_exam"
+           action="wizard_action_classwise_exam_result_form" groups="school.group_school_administration,school.group_school_teacher" sequence="106"/>
+</odoo>
