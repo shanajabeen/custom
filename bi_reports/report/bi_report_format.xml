@@ -5,11 +5,14 @@
 
     <template id="bi_report_classresult_layout">
         <div class="header">
-            <div class="row">
-                <div style="width:100%;font-size:22px;font-family:verdana;border-bottom: 2px solid black;">
+            <div style="text-align:center">
+                <div>
+                   
+                    <img src="bi_reports/static/src/img/logopng.png"  alt="Logo"/>
+                </div><br/>
+                <div style="width:100%;font-size:30px;font-family:verdana;border-bottom: 2px solid black;">
                     <b>INDIAN SCHOOL AL-GHUBRA</b>
-                    <img src="bi_reports/static/src/img/logopng.png" class="float-right" alt="Logo"/>
-                </div>
+                </div><br/>
                 
             </div>
         </div>

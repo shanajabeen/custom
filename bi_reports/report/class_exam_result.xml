@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <odoo>
+
+    <record id="paperformat_production_id" model="report.paperformat">
+        <field name="name">Production Order </field>
+        <field name="default" eval="True" />
+        <field name="format">custom</field>
+        <field name="orientation">Landscape</field>
+        <field name="margin_top">55</field>
+        <field name="margin_bottom">15</field>
+        <field name="margin_left">7</field>
+        <field name="margin_right">7</field>
+        <field name="header_line" eval="False" />
+        <field name="header_spacing">48</field>
+        <field name="dpi">90</field>
+    </record>
+
     <template id="exam_result_class">
         <t t-call="web.html_container">
-           <t t-foreach="docs" t-as="o">
+           <!-- <t t-foreach="docs" t-as="o"> -->
                <t t-call="bi_reports.bi_report_classresult_layout">
                  <div class="page">
+                 <!-- <t t-foreach="docs" t-as="o"> -->
                      <div class="oe_structure" />
                      <br/><br/><br/><br/>
                      <table width="100%">
                          <center>
                              <h2>
-                                 ClassWise Result
+                                ClassWise Result
                              </h2>
                          </center>
                       </table>
@@ -30,81 +46,98 @@
                           <tr>
                               <td align="center" width="14.16%"
                                                      style="font-family: 'Helvetica';font-size: 16px;border: 2px solid black;">
-                                      <span t-field="o.academic_year"/>
+                                      <span t-esc="year"/>
                                </td>
                                <td align="center" width="14.16%"
                                                      style="font-family: 'Helvetica';font-size: 16px;border: 2px solid black;">
-                                      <span t-field="o.s_exam_ids.name"/>
+                                      <span t-esc="exam"/>
                                </td>
                                <td align="center" width="14.16%"
                                                      style="font-family: 'Helvetica';font-size: 16px;border: 2px solid black;">
-                                      <span t-field="o.name"/>
+                                      <span t-esc="stand"/>
                                 </td>
                           </tr>
                       </table>
                       <br/>
                       <table width="100%">
-                             <tr width="100%" >
-                                  <th align="center"  style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-bottom:none">
+                             <tr width="100%">
+                                  <th width="4%" align="center" colspan="1" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-bottom:none">
                                       <b>Roll No</b>
                                   </th>
-                                  <th align="center"  style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-bottom:none">
+                                  <th width="5%" align="center" colspan="1" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-bottom:none">
                                       <b>Student PID</b>
                                   </th>
-                                  <th align="center" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-bottom:none">
+                                  <th width="5%" align="center" colspan="1" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-bottom:none">
                                       <b>Student Name</b>
                                   </th>
-                                  
-                                 
-                                  <t t-foreach="o.result_ids.subject_id" t-as="sub">
-                                      <th style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
-                                          <span t-esc="sub.name"/>
-                                      </th>
-                                  </t>
-
-                                
-                                  <th align="center"  style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
+                                  <t t-foreach="docs[1].result_ids" t-as="sub">
+                                      <t t-if="sub.exm_subpaper_id.name">
+                                        <th width="5%" style="font-family: 'Helvetica';font-size: 15px;border: 2px solid black;">
+                                        <span t-esc="sub.exm_subpaper_id.name"/>
+                                        </th>
+                                    </t>
+                                     <t t-if=" not sub.exm_subpaper_id.name"> 
+                                        <th width="5%" style="font-family: 'Helvetica';font-size: 15px;border: 2px solid black;">
+                                        <span t-esc="sub.subject_id.name"/>
+                                        </th>
+                                    </t>
+                                    </t>
+                                  <th width="10%" align="center" colspan="1" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
                                       <b>Total</b>
                                   </th>
-                    
+                                  
                               </tr>
 
-                            
-                                <tr width="100%">
-                                    <th align="center" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-top:none"></th>
-                                    <th align="center" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-top:none"></th>
-                                    <th align="center" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-top:none"></th>
-                                    <t t-set="total_max" t-value="0"/>  
-                                      <t t-foreach="o.result_ids" t-as="s">
-                                          <td align="center" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
-                                              <span t-esc="s.maximum_marks"/>
-                                          </td>
-                                          <t t-set="total_max" t-value="total_max+s.maximum_marks"/>
-                                      </t>
-                                      <td align="center" style="border: 2px solid black;"> <span t-esc="total_max"/></td>
-                                    <th align="center" colspan="1" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;"></th>
+                              <tr width="100%">
+                                <th align="center" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-top:none"/>
+                                <th align="center" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-top:none"/>
+                                <th align="center" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;border-top:none"/>
+                                <t t-set="total_max" t-value="0"/>
+                                <t t-foreach="docs[1].result_ids" t-as="s">
+                                <td align="center" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
+                                <span t-esc="s.maximum_marks"/>
+                                </td>
+                                <t t-set="total_max" t-value="total_max+s.maximum_marks"/>
+                                </t>
+                                <td align="center" style="border: 2px solid black;">
+                                <span t-esc="total_max"/>
+                                </td>
+                                
                                 </tr>
-                               
-                                    
-                                    
-                                    <t t-foreach="docs" t-as="roll">
-                                    <t t-set="total" t-value="0"/>
-                                    <tr width="100%" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
-                                        
-                                        <td align="center" style="border: 2px solid black;"> <span t-field="roll.roll_no_id"/></td>
-                                        <td align="center" style="border: 2px solid black;"> <span t-field="roll.student_id.student_code"/></td>
-                                        <td align="center" style="border: 2px solid black;"> <span t-field="roll.student_id.name"/></td>
-                                        <t t-foreach="roll.result_ids" t-as="l">
-                                        <td align="center" style="border: 2px solid black;"> <span t-field="l.obtain_marks"/></td>
-                                        <t t-set="total" t-value="total+l.obtain_marks"/>
-                                        </t>
-                                        <td align="center" style="border: 2px solid black;"> <span t-esc="total"/></td>
-                                    </tr>    
-                                    </t>
+
+                            <!-- <tr> -->
+                            <t t-foreach="docs" t-as="o">
+                            
+                            
+                                <t t-set="total" t-value="0"/>
+                                <tr width="100%" style="font-family: 'Helvetica';font-size: 18px;border: 2px solid black;">
+                                <td align="center" style="border: 2px solid black;">
+                                <span t-field="o.roll_no_id"/>
+                                </td>
+                                <td align="center" style="border: 2px solid black;">
+                                <span t-field="o.student_id.student_code"/>
+                                </td>
+                                <td align="center" style="border: 2px solid black;">
+                                <span t-field="o.student_id.name"/>
+                                </td>
+                                <t t-foreach="o.result_ids" t-as="l">
+                                <td align="center" style="border: 2px solid black;">
+                                <span t-field="l.obtain_marks"/>
+                                </td>
+                                <t t-set="total" t-value="total+l.obtain_marks"/>
+                                </t>
+                                <td align="center" style="border: 2px solid black;">
+                                <span t-esc="total"/>
+                                </td>
+                                </tr>
+                            
+                            </t>
+                            
                       </table>
+                      <!-- </t> -->
                  </div>
                 </t>
-            </t>
+            <!-- </t> -->
         </t>
     </template>
 </odoo>

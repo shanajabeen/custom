@@ -17,6 +17,13 @@ class classExamResult(models.TransientModel):
     exam_name = fields.Many2one('exam.exam', 'Exam Name')
 
     
+    # def print_class_report(self):
+    #     data = self.read()[0]
+    #     return self.env.ref('bi_reports.class_result_qweb').report_action([],
+    #                                                                 data=data)
+
+     
+
     def print_class_report(self):
         data = {
             'ids'   : self.ids,
@@ -24,7 +31,12 @@ class classExamResult(models.TransientModel):
             'form'  : {
                     'stand': self.standard_id.id,
                     'year'  : self.year.id,
-                    'exam' : self.exam_name.id
+                    'exam' : self.exam_name.id,
+                    'stand1': self.standard_id.name,
+                    'year1'  : self.year.name,
+                    'exam1' : self.exam_name.name
+
+
                 },
             }
-        return self.env.ref('bi_reports.class_result_qweb').report_action(self, data=data,config=False)
+        return self.env.ref('bi_reports.class_result_qweb').report_action([],data=data)
