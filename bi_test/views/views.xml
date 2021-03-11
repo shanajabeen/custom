@@ -117,5 +117,50 @@
     action="bi_test_actionx"
     parent="b2_test_root_menu"
     sequence="10"/>
+
+
+    <record id="bi_test_view_formy" model="ir.ui.view">
+    <field name="name">b3.test.view.form</field>
+    <field name="model">b3.test</field>
+    <field name="arch" type="xml">
+      <form string="">
+        <sheet>
+          <group>
+          <field name="hobby"/>
+          <field name="kk"/>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="bi_test_view_treey" model="ir.ui.view">
+    <field name="name">b2.test.view.tree</field>
+    <field name="model">b3.test</field>
+    <field name="arch" type="xml">
+      <tree string="">
+       <field name="hobby"/>
+       <field name="kk"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="bi_test_actiony" model="ir.actions.act_window">
+    <field name="name">Test</field>
+    <field name="res_model">b3.test</field>
+    <field name="view_mode">tree,form</field>
+  </record>
+
+  <menuitem
+    id="b2_test_root_menu4"
+    name="hobby"
+    sequence="10"/>
+
+  <menuitem
+    id="b2_test_sub_menuy"
+    name="Testx"
+    action="bi_test_actiony"
+    parent="b2_test_root_menu4"
+    sequence="10"/>
   </data>
 </odoo>

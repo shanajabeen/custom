@@ -1,0 +1,28 @@
+<odoo>
+  <data>
+
+<record id="view_purchase_inherit" model="ir.ui.view">
+            <field name="name">view.purchase.inherit</field>
+            <field name="model">purchase.order</field>
+            <field name="inherit_id" ref="purchase.purchase_order_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//button[@name='button_cancel']" position="after">
+                    <button name="compute_mybutton" string="Price_List" type="object"/>
+                </xpath>
+                <xpath expr="//page[1]" position="after">
+                    <notebook string="Price List">
+                        <page>
+                            <field name="purchase_line_ids" >
+                               <tree editable="bottom">
+                                    <field name="product_id"/> 
+                                    <field name="price_list_id"/>
+                                    <field name="amount"/>
+                                </tree>
+                            </field>
+                        </page>
+                    </notebook>
+                </xpath>
+            </field>
+        </record>
+  </data>
+</odoo>

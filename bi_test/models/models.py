@@ -6,7 +6,11 @@ from odoo import _, api, fields, models
 
 _logger = logging.getLogger(__name__)
 
-
+class b3Test(models.Model):
+    _name = 'b3.test'
+    _description = 'description'
+    hobby= fields.Char('hobby')
+    kk=fields.Char('hobby2')
 class BiTest(models.Model):
     _name = 'bi.test'
     _description = 'description'
@@ -56,7 +60,5 @@ class B2Test(models.Model):
     details_id=fields.Many2one('bi.test')
     salary1 = fields.Float(string='salary1')
     age1= fields.Integer('age1')
-    mm=fields.Many2many('bi.test')
+    mm=fields.Many2many('b3.test',"school_hobby","student_id","hobby_id")
 
-
-    

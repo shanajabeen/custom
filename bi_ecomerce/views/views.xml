@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="product_buy_now1" inherit_id="website_sale.product" active="False" customize_show="True" name="Sample Button">
+        <xpath expr="//a[@id='add_to_cart']" position="after">
+            <script type="text/javascript" src="/bi_ecomerce/static/src/js/bi_ecomerce.js"/>
+            <a role="button" id="buy_now1" class="btn btn-outline-primary btn-lg mt16 d-block d-sm-inline-block" href="#"><i class="fa fa-apple"/> Sample</a>
+        </xpath>
+    </template>
+</odoo>
+
