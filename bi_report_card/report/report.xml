@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+   
+        <report id="report_card_pdf"
+                model="report.card1"
+                string="Report Card"
+                report_type="qweb-pdf"
+                name="bi_report_card.report_card_report"
+                file="Report Card"
+                paperformat ="bi_report_card.paperformat_report_card"
+                      
+        />
+</odoo>

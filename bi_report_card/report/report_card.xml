@@ -1,0 +1,763 @@
+<odoo>
+    <data>
+        <template id="report_card_report">
+            <t t-call="web.html_container">
+                <t t-foreach="docs" t-as="o">
+                <!-- <t t-call="bi_reports.bi_report_classresult_layout"> -->
+                    <div class="page">
+                        <div style="height:250px;">
+                            <!-- div to give space in header -->
+                        </div>
+                        <div class="row">
+                            <center>
+                                <span style="font-size:28px;"><b>Indian School Al Ghubra – International</b></span>
+                                <br/><br/>
+                                <span style="font-size:35px;"><b>Achievement Record</b></span>
+                            </center>
+                        </div>
+                        <div style="height:550px;">
+                            <!-- div to give space in between -->
+                        </div>
+                        <div style="padding-left:110px;">
+                            <span style="font-size:22px;">
+                                <b>Student Name:</b>
+                                <t t-if="o.name"><span  t-esc="o.name"/></t>
+                                <t t-if="o.middle"><span  t-esc="o.middle"/></t>
+                                <t t-if="o.last"><span  t-esc="o.last"/></t>
+                            </span><br/>
+                            <span style="font-size:22px;">
+                                <b>Grade:</b>
+                                <t t-if="o.standard_id.standard_id">
+                                    <span  t-esc="o.standard_id.standard_id.name"/>
+                                </t>
+                            </span><br/>
+                            <span style="font-size:22px;"><b>Session:</b><t t-if="o.standard_id.user_id">
+                                <span  t-esc="o.year.name"/>
+                               
+                            </t></span><br/>
+                            <span style="font-size:22px;">
+                                <b>Class Teacher Name:</b>
+                                <t t-if="o.standard_id.user_id">
+                                    <span  t-esc="o.standard_id.user_id.name"/>
+                                </t>
+                            </span><br/>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <div style="height:450px;">
+                            <!-- div to give space in header -->
+                        </div>
+                        <div class="row">
+                            <center>
+                                <span style="font-size:28px;">
+                                    <b>Achievement Record –  <t t-if="o.year"><b><span  t-esc="o.year.name"/></b></t>
+                                    </b></span>
+                                <br/><br/><br/>
+                                <span style="font-size:35px;"><b>Student Particulars</b></span>
+                            </center>
+                        </div>
+                        <div style="height:200px;">
+                            <!-- div to give space in between -->
+                        </div>
+                        <div  class="row">
+                            <table width="100%">
+                                <tr width="100%">
+                                    <td width="20%" style="font-size:22px;">
+                                        <b>Name</b>
+                                    </td>
+                                    <td width="1%">
+                                        <b>:</b>
+                                    </td>
+                                    <td width="79%">
+                                        <t t-if="o.name"><span  t-esc="o.name"/></t>
+                                        <t t-if="o.middle"><span  t-esc="o.middle"/></t>
+                                        <t t-if="o.last"><span  t-esc="o.last"/></t>
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td width="20%" style="font-size:22px;">
+                                        <b>Class</b>
+                                    </td>
+                                    <td width="1%">
+                                        <b>:</b>
+                                    </td>
+                                    <td width="79%">
+                                        <t t-if="o.standard_id">
+                                            <span  t-esc="o.standard_id.name"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td width="20%" style="font-size:22px;">
+                                        <b>Section</b>
+                                    </td>
+                                    <td width="1%">
+                                        <b>:</b>
+                                    </td>
+                                    <td width="79%"><t t-if="o.year"><span  t-esc="o.year.name"/></t></td>
+                                </tr>
+                                <tr width="100%">
+                                    <td width="20%" style="font-size:22px;">
+                                        <b>GR No.</b>
+                                    </td>
+                                    <td width="1%">
+                                        <b>:</b>
+                                    </td>
+                                    <td width="79%">
+                                        <t t-if="o.student_code">
+                                            <span  t-esc="o.student_code"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                                <tr width="100%">
+                                    <td width="20%" style="font-size:22px;">
+                                        <b>Date of Birth</b>
+                                    </td>
+                                    <td width="1%">
+                                        <b>:</b>
+                                    </td>
+                                    <td width="79%">
+                                        <t t-if="o.date_of_birth">
+                                            <span  t-esc="o.date_of_birth"/>
+                                        </t>
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                        <div style="height:200px;">
+                            <!-- div to give space in between -->
+                        </div>
+                        <div class="row">
+                            <span  style="font-size:22px;">
+                                <b>Class Teacher Signature ______</b>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="page">
+                        <p style="page-break-after:always;"> </p>
+                        <div class="row">
+                            <center>
+                                <span style="font-size:25px;">
+                                    <b>Achievement Record –  <t t-if="o.year"><b><span  t-esc="o.year.name"/></b></t>
+                                    </b></span>
+                                <br/>
+                                <span style="font-size:25px;"><b>Exam Name:</b></span>
+                            </center>
+                        </div>
+                        <br/>
+                        <table width="100%" style="border:1px solid grey; border-collapse: collapse;">
+                            <tr width="100%" style="border:1px grey;border-collapse: collapse;text-align:center;">
+                                <td width="20%" style="border:1px solid grey;border-collapse: collapse;"> 
+                                    <b>Student Name</b>
+                                </td>
+                                <td width="30%" > 
+                                    <t t-if="o.name"><span  t-esc="o.name"/></t>
+                                    <t t-if="o.middle"><span  t-esc="o.middle"/></t>
+                                    <t t-if="o.last"><span  t-esc="o.last"/></t>
+                                </td>
+                                <td width="20%" style="border:1px solid grey;border-collapse: collapse;"> 
+                                    <b>Father’s Name</b>
+                                </td>
+                                <td width="30%" style="border:1px solid grey;border-collapse: collapse;"> 
+                                   
+                                    <t t-if="o.father_name"><span t-field="o.father_name"/></t>
+                                </td>
+                            </tr>
+                            <tr width="100%" style="border:1px solid grey;border-collapse: collapse;text-align:center;">
+                                <td width="20%" style="border:1px solid grey;border-collapse: collapse;text-align:center;"> 
+                                    <b>Student GR No.</b>
+                                </td>
+                                <td width="30%" style="border:1px solid grey;border-collapse: collapse;"> 
+                                    <t t-if="o.student_code">
+                                        <span  t-esc="o.student_code"/>
+                                    </t>
+                                </td>
+                                <td width="20%" style="border:1px solid grey;border-collapse: collapse;"> 
+                                    <b>Mother’s name</b>
+                                </td>
+                                <td width="30%" style="border:1px solid grey;border-collapse: collapse;"> 
+                                    <t t-if="o.mother_name"><span t-field="o.mother_name"/></t>  
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div>
+                            <center>
+                                <span style="font-size:25px;"><b>Scholastic Report</b></span>
+                            </center>
+                        </div>
+                        <br/>
+                        <table width="100%">
+                            <tr width="100%">
+                                <td width="20%">
+                                    <b>Class Teacher:</b>
+                                </td>
+                                <td width="30%" style="text-align:left;">
+                                    <t t-if="o.standard_id.user_id">
+                                        <span style="text-align:left;" t-esc="o.standard_id.user_id.name"/>
+                                    </t>
+                                </td>
+                                <td width="25%">
+                                    <!-- <b>Deputy Class Teacher:</b> -->
+                                </td>
+                                <td width="25%">
+                                
+                                </td>
+                            </tr>
+                        </table>
+                        <table width="100%" style="border:1px solid grey;border-collapse: collapse;">
+                            <thead >
+                                <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                <th width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                        <b>Subject</b>
+                                </th>
+                                <th width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                        <b>Subject code</b>
+                                </th>
+                                <t t-if="ccount!=0">
+                                <th width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                        <b>Term 1</b>
+                                </th>
+                                </t>
+                                <t t-if="ccount2!=0">
+                                <th width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                        <b>Term 2</b>
+                                    
+                                        
+                                </th>
+                                </t>
+                                </tr>
+                            </thead>
+                            <t t-foreach="id3" t-as="m">
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                               
+                                <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                    <t t-esc="m.subject_id.name"/>
+                               </td>
+                               <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                <t t-esc="m.subject_id.code"/>
+                               </td>
+
+                               <t t-if="ccount!=0">
+                               <t t-if="m.bi_scholastic_id.term=='term1'">
+                                <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                    <span  t-esc="m.grade"/>
+                               </td>
+                               </t>
+                               </t> 
+
+                               <t t-if="ccount1!=0">
+                               <t t-if="m.bi_scholastic_id.term!='term1'">
+                                <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                    
+                               </td>   
+                               </t>
+                            </t>
+                               <t t-if="ccount2!=0">
+                               <t t-if="m.bi_scholastic_id.term=='term2'">
+                                <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                    <span  t-esc="m.grade"/>
+                               </td>
+                               </t> 
+                               </t>
+
+                               <t t-if="ccount2!=0">
+                               <t t-if="m.bi_scholastic_id.term!='term2'">
+                                <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                    
+                               </td>   
+                               </t>
+                               </t>  
+                                 
+                            </tr>
+                        </t>
+                        </table>
+                        <div>
+                            <span style="font-size:20px;"><b>Class Teacher Remarks:</b></span><br/>
+                            <div  style="height:90px;border:1px solid grey;border-collapse: collapse;">
+                            <t t-if="id3">
+                             <t t-foreach="id3.bi_scholastic_id" t-as="v">
+                              <div><b><tspan t-esc="v.class_remarks"/></b></div>   
+                                 
+                             </t>   
+                                
+                            </t>
+                            </div>
+                        </div>
+                        <br/>
+                        <div>
+                            <span style="font-size:20px;"><b>Result: __________________</b></span><br/>
+                        </div>
+                        <div>
+                            <center>
+                                <span style="font-size:20px;"><b>Signatures</b></span><br/>
+                            </center>
+                        </div>
+                        <br/><br/><br/>
+                        <table width="100%">
+                            <tr width="100%">
+                                <td width="30%">
+                                    <b>----------------------------------------</b>
+                                </td>
+                                <td width="5%">
+                                </td>
+                                <td width="30%">
+                                    <b>----------------------------------------</b>
+                                </td>
+                                <td width="5%">
+                                </td>
+                                <td width="30%">
+                                    <b>----------------------------------------</b>
+                                </td>
+                            </tr>
+                            <tr width="100%">
+                                <td width="30%">
+                                    <b>Class Teacher</b>
+                                </td>
+                                <td width="5%">
+                                </td>
+                                <td width="30%">
+                                    <b>Principal</b>
+                                </td>
+                                <td width="5%">
+                                </td>
+                                <td width="30%">
+                                    <b>Parent</b>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table width="100%">
+                            <tr width="100%">
+                                <td width="10%">
+                                    <b>Date:</b>
+                                </td>
+                                <td width="60%">
+                                
+                                </td>
+                                <td width="30%">
+                                    <b>Location:</b>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div>
+                            <span>
+                                <b>Grading System:</b>
+                            </span>
+                        </div>
+                        <table width="100%" style="border:1px solid grey;border-collapse: collapse;">
+                            
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                <t t-foreach="dict3" t-as="d">
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b><span  t-esc="d"/></b>
+                                </td>
+                                </t>
+                            </tr>
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                <t t-foreach="dict2" t-as="d1">
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b><span  t-esc="d1"/>:<span  t-esc="dict2[d1]"/></b>
+                                </td>
+                                </t>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="page">
+                        <p style="page-break-after:always;"> </p>
+                        <div class="row">
+                            <center>
+                                <span style="font-size:25px;">
+                                    <b>Achievement Record –  <t t-if="o.year"><b><span  t-esc="o.year.name"/></b></t>
+                                    </b></span>
+                                <br/>
+                                <span style="font-size:25px;"><b>Exam Name:</b></span>
+                            </center>
+                        </div>
+                        <br/><br/>
+                        <table width="100%" style="border:1px solid grey;border-collapse: collapse;">
+                            <thead>
+                                <tr width="100%" style="border:1px solid grey;border-collapse: collapse;text-align:center;">
+                                    <th width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                        <b>Student Name</b>
+                                    </th>
+                                    <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                        <t t-if="o.name"><span  t-esc="o.name"/></t>
+                                        <t t-if="o.middle"><span  t-esc="o.middle"/></t>
+                                        <t t-if="o.last"><span  t-esc="o.last"/></t>
+                                    </td>
+                                    <th width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                        <b>Father’s Name</b>
+                                    </th>
+                                    <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                        <t t-if="o.father_name"><span  t-esc="o.father_name"/></t>
+                                    </td>
+                                </tr>
+                                </thead>
+                            <tr width="100%" style="border:1px solid grey;border-collapse: collapse;text-align:center;">
+                                <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>Student GR No.</b>
+                                </td>
+                                <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                    <t t-if="o.student_code">
+                                        <span  t-esc="o.student_code"/>
+                                    </t>
+                                </td>
+                                <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>Mother’s name</b>
+                                </td>
+                                <td width="25%" style="border:1px solid grey;border-collapse: collapse;">
+                                    <t t-if="o.mother_name"><span  t-esc="o.mother_name"/></t>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <div>
+                            <center>
+                                <span style="font-size:20px;"><b>Remarks</b></span>
+                            </center>
+                        </div>
+                        <br/>
+                        <table width="100%" >
+                            <tr width="100%" >
+                                <td width="20%">
+                                    <b>Class Teacher:</b>
+                                </td>
+                                <td width="30%" style="text-align:left;">
+                                <t t-if="o.standard_id.user_id.name"><span style="text-align:left;" t-esc="o.mother_name"/></t>
+                                </td>
+                                <td width="25%">
+                                    <!-- <b>Deputy Class Teacher:</b> -->
+                                </td>
+                                <td width="25%">
+                                
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                            <thead>
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                <th width="20%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <b>Subject</b>
+                                </th>
+                                <th width="10%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <b>Subject Code</b>
+                                </th>
+                                <th width="70%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <b>Remarks</b>
+                                </th>
+                            </tr>
+                        </thead>
+                            <t t-foreach="id3" t-as="i">
+                                <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <td width="20%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        <t t-esc="i.subject_id.name"/>
+                                    </td>
+                                    <td width="10%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        <t t-esc="i.subject_id.code"/>
+                                    </td>
+                                    <td width="70%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        <t t-esc="i.remarks"/>
+                                    </td>
+                                </tr>  
+                            </t>
+                            
+                        </table>
+                    </div>
+                    <div class="page">
+                        <p style="page-break-after:always;"> </p>
+                        <div class="row">
+                            <center>
+                                <span style="font-size:20px;">
+                                    <b>Non-Scholastic and Co Scholastic - Achievement Record
+                                    </b></span>
+                                <br/>
+                            </center>
+                        </div>
+                        <br/>
+                        <span style="font-size:20px;"><b>Co-Scholastic Areas</b></span>
+                        <table width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                            <thead>
+                                <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <th style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        Area
+                                    </th>
+                                    <th  style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        Subject code
+                                    </th>
+                                    <t t-if="term1!=0">
+                                        <th style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            Term 1
+                                        </th>   
+                                    </t>
+                                    
+
+                                    <t t-if="term2!=0">
+                                        <th style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            Term 2
+                                        </th>   
+                                    </t>
+
+                                    <th  style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        Remarks
+                                    </th>
+                                </tr>
+                            </thead>
+                            <t t-foreach="sc" t-as="n">
+                                <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        <td  style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            <t t-esc="n.bi_coscholastic_id.subject_id.name"/> 
+                                        </td> 
+                                        <td  style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            <t t-esc="n.bi_coscholastic_id.subject_code"/> 
+                                        </td>  
+                                        <t t-if="term1!=0">
+                                            <t t-if="n.bi_coscholastic_id.term=='term1'">
+                                                <td style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                                    
+                                                    <t t-esc="n.obtain_marks"/>
+        
+                                                </td> 
+                                            </t> 
+                                            <t t-if="n.bi_coscholastic_id.term!='term1'">
+                                                <td style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                                </td> 
+                                            </t>    
+                                        </t>
+                                        <t t-if="term2!=0">
+                                            <t t-if="n.bi_coscholastic_id.term=='term2'">
+                                            <td style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                                
+                                                <t t-esc="n.obtain_marks"/>
+    
+                                            </td> 
+                                        </t> 
+                                        <t t-if="n.bi_coscholastic_id.term!='term2'">
+                                            <td style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            </td> 
+                                        </t>  
+                                        </t>
+                                        <td  style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            <t t-if="n.remarks"><t t-esc="n.remarks"/></t>
+                                        </td>
+                                </tr>
+                            </t>
+    
+                        </table>
+                        <br/>
+                        <span style="font-size:20px;"><b>Non-Scholastic Areas</b></span>
+                        <table width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                            <thead>
+                                <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <th  style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    Area
+                                    </th>
+                                    <t t-if="nterm1!=0">
+                                        <th style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            Term 1
+                                        </th>   
+                                    </t>
+                                    
+
+                                    <t t-if="nterm2!=0">
+                                        <th style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            Term 2
+                                        </th>   
+                                    </t>
+                                    <th  style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        Remarks
+                                    </th>
+                                </tr>
+                            </thead>
+                            <t t-foreach="nsc" t-as="n">
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <td  style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        <t t-esc="n.bi_coscholastic_id.subject_id.name"/> 
+                                    </td>   
+                                    <t t-if="nterm1!=0">
+                                        <t t-if="n.bi_coscholastic_id.term=='term1'">
+                                            <td style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                                
+                                                <t t-esc="n.obtain_marks"/>
+    
+                                            </td> 
+                                        </t> 
+                                        <t t-if="n.bi_coscholastic_id.term!='term1'">
+                                            <td style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            </td> 
+                                        </t>    
+                                    </t>
+                                    <t t-if="nterm2!=0">
+                                        <t t-if="n.bi_coscholastic_id.term=='term2'">
+                                        <td style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                            
+                                            <t t-esc="n.obtain_marks"/>
+
+                                        </td> 
+                                    </t> 
+                                    <t t-if="n.bi_coscholastic_id.term!='term2'">
+                                        <td style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        </td> 
+                                    </t>  
+                                    </t>
+                                    <td  style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        <t t-if="n.remarks"><t t-esc="n.remarks"/></t>
+                                    </td>
+                            </tr>
+                        </t>
+
+                        </table>
+                        <br/>
+
+                        <div>
+                            <span>
+                                <b>Grading System:</b>
+                            </span>
+                        </div>
+                        <table width="100%" style="border:1px solid grey;border-collapse: collapse;">
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                               
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>A</b>
+                                </td>
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>B</b>
+                                </td>
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>C</b>
+                                </td>
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>D</b>
+                                </td>
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>E</b>
+                                </td>
+                                
+                            </tr>
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>Outstanding</b>
+                                </td>
+
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>Very Good</b>
+                                </td>
+
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>Good</b>
+                                </td>
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>Fair</b>
+                                </td>
+                                <td  style="border:1px solid grey;border-collapse: collapse;">
+                                    <b>Average</b>
+                                </td>
+                               
+                            </tr>
+                            
+                        </table>
+                    <br />
+
+                        <span style="font-size:20px;">
+                            <center>
+                                <b>Attendance</b>
+                            </center>
+                        </span>
+                        <table width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                            
+                                    <td width="25%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        Total number of working days
+                                     </td>
+                                     <td width="25%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        Present
+                                     </td>
+                                     <td width="25%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                        Absence
+                                     </td>
+                                     <td width="25%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                         Tardy
+                                     </td> 
+                          
+                            </tr>
+                            
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                            
+                                <td width="20%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <t t-esc="termcount"/> 
+                                </td>
+                                <td width="20%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                  <t t-esc="present"/> 
+                                </td>
+                                <td width="20%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <t t-esc="absent"/> 
+                                </td>
+                                <td width="20%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <t t-esc="late"/> 
+                                </td>
+                            </tr>
+                     
+                              
+                        
+                        </table>
+                        <br/>
+                        <span style="font-size:20px;">
+                            <center>
+                                <b>Health Status</b>
+                            </center>
+                        </span>
+                        <table width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                            <tr width="100%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                <td width="25%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                   Height
+                                </td>
+                                <td width="25%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <t t-if="o.height">
+                                        <span  t-esc="o.height"/>
+                                    </t>
+                                </td>
+                                <td width="25%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                   Weight
+                                </td>
+                                <td width="25%" style="text-align:center;border:1px solid grey;border-collapse: collapse;">
+                                    <t t-if="o.weight">
+                                        <span  t-esc="o.weight"/>
+                                    </t>
+                                </td>
+                            </tr>
+                        </table>
+                        <br/>
+                        <table width="100%">
+                            <tr width="100%">
+                                <td width="25%">
+                                    <b>Promoted to:</b>
+                                </td>
+                                <td width="25%">
+                                    <b>_________________</b>
+                                </td>
+                                <td width="50%">
+                                
+                                </td>
+                            </tr>
+                            <tr width="100%">
+                                <td width="35%">
+                                    <b>Class Teacher’s Signature:</b>
+                                </td>
+                                <td width="25%">
+                                    <b>_________________</b>
+                                </td>
+                                <td width="40%">
+                                
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </t>
+            </t>
+            <!-- </t> -->
+        </template>
+    </data>
+</odoo>

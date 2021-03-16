@@ -1,0 +1,40 @@
+<odoo>
+
+    <record id="report_stmnt_wizard" model="ir.ui.view">
+        <field name="name">Report Statement Wizard</field>
+        <field name="model">report.card1</field>
+        <field name="arch" type="xml">
+            <form string="Report Statement Wizard">
+                <group col="4" colspan="4">
+                    <field name="s_term" required="1" widget="selection"/>
+                    <field name="s_academic_year_id" required="1" widget="selection"/>
+                </group>
+                <footer>
+                    <button name="print_report" type="object" string="Print" class="oe_highlight"/> 
+                    <button string="Cancel" class="btn btn-default" special="cancel"/>
+                </footer>
+            </form>
+        </field>
+    </record>
+
+<data>
+    <record id="action_report_stmnt" model="ir.actions.act_window">
+        <field name="name">Report Statement Wizard</field>
+        <field name="res_model">report.card1</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+
+    <record id="view_student_student_form_1_inherit" model="ir.ui.view">
+        <field name="name">student.student.view.form.inherit</field>
+        <field name="model">student.student</field>
+        <field name="inherit_id" ref="school.view_student_student_form_1"/>
+        <field name="arch" type="xml">
+            <xpath expr="//button[@name='set_remark']" position="after">
+                <button string="Report Card" name="%(action_report_stmnt)d" type="action" />
+            </xpath>
+        </field>
+    </record>
+
+</data>
+</odoo>
