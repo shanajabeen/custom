@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="bi_saleorder_tax_xls_report" model="ir.ui.view">
+		<field name="name">Saleorder Report</field>
+		<field name="model">bi.product.tax</field>
+		<field name="arch" type="xml">
+			<form string="Tax Report">
+				<group>
+					<group>
+					    <!-- <field name="product_id" required="1"/>	 -->
+                        <field name="date_from" required="1"/>	
+						<field name="date_to" required="1"/>			
+				    </group>
+				</group>
+				<footer>
+					<button name="print_report_xls" string="Print Excel Report" type="object" class="btn-primary"/>
+					<button string="Cancel" class="btn-default" special="cancel" />
+				</footer>
+			</form>
+		</field>
+	</record>
+	<record id="bi_saleorder_tax_action_report" model="ir.actions.act_window">
+		<field name="name">Tax Report</field>
+		
+		<field name="view_mode">form</field>
+		<field name="res_model">bi.product.tax</field>
+		<field name="view_mode">form</field>
+        <field name="target">new</field>
+	</record>
+	
+   
+	<menuitem
+		action="bi_saleorder_tax_action_report" 
+		id="menu_tax_excel_id5"
+		name="Tax Report"
+		groups="bi_sales_security.sales_admin"
+		parent="bi_invoice_report.bi_parent_menu_item"
+	  />  
+</odoo>

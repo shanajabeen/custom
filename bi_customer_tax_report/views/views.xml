@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+<data>
+        <report
+        id="report_cust_tax_id"
+        model="bi.product.tax"
+        string="Sales Tax Excel Report"
+        report_type="xlsx"
+        name="bi_customer_tax_report.tax_report_id_xlx"
+        file="bi_customer_tax_report.tax_report_id_xlx"
+       />
+</data>
+</odoo>	
