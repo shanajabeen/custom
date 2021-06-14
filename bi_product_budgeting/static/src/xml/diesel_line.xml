@@ -1,0 +1,21 @@
+<templates>
+    <div t-name="bi_product_budgeting.ProductQtyWidget">
+        <div t-att-class="!widget.data.product_qty_widget">
+            <a tabindex="0" class="fa fa-info-circle text-primary" style="font-size: medium;"/>
+        </div>
+    </div>
+
+    <div t-name="bi_product_budgeting.QtyAvailablePopOver">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <small>Available Quantity</small><br />
+                        <strong><span t-esc="details"/></strong>
+                    </td>
+                    
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</templates>

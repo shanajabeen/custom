@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="bi_material_issue_diesel_line_view_list" name="bi.material.issue.diesel.line.view.list" inherit_id="web.assets_backend">
+        <xpath expr="." position="inside">
+            <script type="text/javascript" src="/bi_product_budgeting/static/src/js/product_qty_widget.js"></script>
+        </xpath>
+    </template>
+    <record id="bi_material_issue_diesel_line_view_form_inherit" model="ir.ui.view">
+        <field name="name">bi.material.issue.diesel.line.form.inherit</field>
+        <field name="model">bi.material.transfer</field>
+        <field name="inherit_id" ref="bi_material_transfer.view_material_transfer_form" />
+        <field name="arch" type="xml"> 
+        <xpath expr="//field[@name='diesel_line_ids']/tree/field[@name='quantity']" position="after">
+            <widget name="product_qty_widget" width="20px"/>
+        </xpath>
+        </field>
+    </record>
+</odoo>

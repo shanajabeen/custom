@@ -1,0 +1,41 @@
+<templates>
+    <div t-name="bi_product_budgeting.ProductBudgetWidget">
+        <div t-att-class="!widget.data.product_budget_widget">
+            <a tabindex="0" class="fa fa-info-circle text-primary" style="font-size: medium;"/>
+        </div>
+    </div>
+
+    <div t-name="bi_product_budgeting.QtyBudgetPopOver">
+        <table>
+            <tbody>
+                    <t t-foreach="details" t-as="detail">
+                        <tr>
+                            <!-- <td>
+                                <strong><span t-esc="detail.branch"/></strong>
+                               
+                            </td> -->
+                            <td>
+                                <small>Budgeted Quantity</small><br />
+                                <strong><span t-esc="detail.budgeted_qty"/></strong>
+                            </td>
+                            <td>
+                                <small>Available Quantity</small>  <br />
+                                <strong><span t-esc="detail.virtual_qty"/></strong>
+                          
+                            </td>
+                            <td>
+                                <small>Ordered Quantity</small>  <br />
+                                <strong><span t-esc="detail.ordered_qty"/></strong>
+                            </td>
+                            <td>
+                                <small>Pending Quantity</small>  <br />
+                                <strong><span t-esc="detail.pending_qty"/></strong>
+                          
+                            </td>
+                           
+                        </tr>
+                    </t>
+            </tbody>
+        </table>
+    </div>
+</templates>
